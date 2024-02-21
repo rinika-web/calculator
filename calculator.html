@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <meta name="firstproject" content="example of js">
+    <meta name="viewport" content="width=device-width">
+    <!--script src="calculator.js"></script-->
+    <title>CALCULATOR</title>
+</head>
+
+<body>
+    <form>
+        value1:<input type="text" id="value1">
+        <br>
+        <br>
+        value2:<input type="text" id="value2">
+        <br>
+        <br>
+        <div id="key">
+            <button type="button" onclick="calc('1')">1</button>
+            <button type="button" onclick="calc('2')">2</button>
+            <button type="button" onclick="calc('3')">3</button>
+            <br>
+            <button type="button" onclick="calc('4')">4</button>
+            <button type="button" onclick="calc('5')">5</button>
+            <button type="button" onclick="calc('6')">6</button>
+            <br>
+            <button type="button" onclick="calc('7')">7</button>
+            <button type="button" onclick="calc('8')">8</button>
+            <button type="button" onclick="calc('9')">9</button>
+            <br>
+            <button type="button" onclick="calc(',')">,</button>
+            <button type="button" onclick="calc('0')">0</button>
+            <button type="button" onclick="calc('.')">.</button>
+        </div>
+        operator:
+        <select id="operator">
+            <option value="add">Add</option>
+            <option value="min">Sub</option>
+            <option value="mul">Multi</option>
+            <option value="div">Div</option>
+        </select>
+        <button type="button" onclick="calcutr()">Calculate</button>
+
+    </form>
+    <script>
+        let focusInput = null;
+        function calc(key) {
+            if (focusInput) {
+                focusInput.value += key;
+            }
+        }
+        function calcutr() {
+            var a = parseInt(document.querySelector("#value1").value);
+            var b = parseInt(document.querySelector("#value2").value);
+            var op = document.querySelector("#operator").value;
+            var calculate;
+
+            if (op == "add") {
+                calculate = a + b;
+            } else if (op == "min") {
+                calculate = a - b;
+            } else if (op == "mul") {
+                calculate = a * b;
+            } else if (op == "div") {
+                calculate = a / b;
+            }
+
+            //console.log(calculate);   
+            document.querySelector("#result").innerHTML = calculate;
+        }
+        document.getElementById("value1").addEventListener("focus", function () {
+            focusInput = this;
+        });
+        document.getElementById("value2").addEventListener("focus", function () {
+            focusInput = this;
+        });
+        /*document.getElementById("value1").addEventListener("blur", function () {
+            focusInput = null;
+        });
+        document.getElementById("value2").addEventListener("blur", function () {
+            focusInput = null;
+        });*/
+    </script>
+    <div id="result"></div>
+</body>
+
+</html>
